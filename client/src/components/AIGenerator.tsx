@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "@/hooks/useInView";
 import { Sparkles, Loader2, RefreshCw, Copy, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { trpc } from "@/lib/trpc";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const industries = [
   { id: "tech", label: "科技", labelEn: "Technology" },
@@ -286,21 +288,46 @@ export default function AIGenerator() {
   const [result, setResult] = useState<any>(null);
   const [copied, setCopied] = useState(false);
   const { ref, inView } = useInView({ threshold: 0.1 });
+  const { lang } = useLanguage();
+  const generateMutation = trpc.campaign.generate.useMutation();
 
   const handleGenerate = async () => {
     if (!brandName || !industry || !objective) return;
     setLoading(true);
     setResult(null);
 
-    // Simulate AI processing time
-    await new Promise((resolve) => setTimeout(resolve, 2500));
+    const industryLabel = industries.find((i) => i.id === industry)?.label;
+    const objectiveLabel = objectives.find((o) => o.id === objective)?.label;
 
+    try {
+      const res = await generateMutation.mutateAsync({
+        brandName,
+        industry: industryLabel || industry,
+        objective: objectiveLabel || objective,
+        lang,
+      });
+
+      if (res.success && res.plan && res.plan.theme) {
+        setResult({
+          ...res.plan,
+          brandName,
+          industry: industryLabel,
+          objective: objectiveLabel,
+        });
+        setLoading(false);
+        return;
+      }
+    } catch (error) {
+      // fall through to offline template
+    }
+
+    // Offline fallback
     const plan = getDefaultPlan(industry, objective);
     setResult({
       ...plan,
       brandName,
-      industry: industries.find((i) => i.id === industry)?.label,
-      objective: objectives.find((o) => o.id === objective)?.label,
+      industry: industryLabel,
+      objective: objectiveLabel,
     });
     setLoading(false);
   };

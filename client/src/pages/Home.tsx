@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import LoadingScreen from "@/components/LoadingScreen";
 import HeroSection from "@/components/HeroSection";
 import PartnersSection from "@/components/PartnersSection";
 import ServicesSection from "@/components/ServicesSection";
@@ -15,6 +16,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 export default function Home() {
   return (
     <div className="min-h-screen">
+      <LoadingScreen />
       <Navbar />
       <HeroSection />
       <PartnersSection />

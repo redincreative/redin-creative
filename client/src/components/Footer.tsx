@@ -1,71 +1,54 @@
+import { useLanguage } from "@/contexts/LanguageContext";
+
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="relative py-12 border-t border-border/30">
       <div className="container">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
           {/* Brand */}
           <div>
-            <h3 className="text-xl font-bold font-['Playfair_Display'] text-gradient-gold mb-3">
-              REDIN CREATIVE
-            </h3>
+            <h3 className="text-xl font-bold font-['Playfair_Display'] text-gradient-gold mb-3">REDIN CREATIVE</h3>
             <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-              紅人創文化傳媒有限公司
-              <br />
-              香港領先全方位市場營銷服務商
+              {t("紅人創文化傳媒有限公司", "Redin Creative Limited")}<br />
+              {t("香港領先全方位市場營銷服務商", "Hong Kong's Leading Full-Service Marketing Agency")}
             </p>
-            <p className="text-xs text-muted-foreground">
-              創意驅動・全網聯動・實效落地
-            </p>
+            <p className="text-xs text-muted-foreground">{t("創意驅動・全網聯動・實效落地", "Creativity-Driven · Omni-Channel · Result-Oriented")}</p>
           </div>
 
           {/* Services */}
           <div>
-            <h4 className="text-sm font-bold text-foreground mb-3">核心服務</h4>
+            <h4 className="text-sm font-bold text-foreground mb-3">{t("核心服務", "Core Services")}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li className="hover:text-gold transition-colors cursor-pointer">品牌策略</li>
-              <li className="hover:text-gold transition-colors cursor-pointer">KOL/KOC 營銷</li>
-              <li className="hover:text-gold transition-colors cursor-pointer">社交媒體管理</li>
-              <li className="hover:text-gold transition-colors cursor-pointer">危機公關</li>
-              <li className="hover:text-gold transition-colors cursor-pointer">線下渠道鋪設</li>
+              <li className="hover:text-gold transition-colors cursor-pointer">{t("品牌策略", "Brand Strategy")}</li>
+              <li className="hover:text-gold transition-colors cursor-pointer">{t("KOL/KOC 營銷", "KOL/KOC Marketing")}</li>
+              <li className="hover:text-gold transition-colors cursor-pointer">{t("社交媒體管理", "Social Media Management")}</li>
+              <li className="hover:text-gold transition-colors cursor-pointer">{t("危機公關", "Crisis PR")}</li>
+              <li className="hover:text-gold transition-colors cursor-pointer">{t("線下渠道鋪設", "Offline Distribution")}</li>
             </ul>
           </div>
 
           {/* Platforms */}
           <div>
-            <h4 className="text-sm font-bold text-foreground mb-3">覆蓋平台</h4>
+            <h4 className="text-sm font-bold text-foreground mb-3">{t("覆蓋平台", "Platform Coverage")}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>小紅書 / 抖音</li>
+              <li>{t("小紅書 / 抖音", "Xiaohongshu / Douyin")}</li>
               <li>Instagram / Facebook</li>
               <li>YouTube / Threads</li>
-              <li>微信 / 微博</li>
-              <li>大眾點評 / 高德地圖</li>
+              <li>{t("微信 / 微博", "WeChat / Weibo")}</li>
+              <li>{t("大眾點評 / 高德地圖", "Dianping / Amap")}</li>
             </ul>
           </div>
 
           {/* Group */}
           <div>
-            <h4 className="text-sm font-bold text-foreground mb-3">香港戰略合作夥伴</h4>
+            <h4 className="text-sm font-bold text-foreground mb-3">{t("香港戰略合作夥伴", "HK Strategic Partners")}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <a href="https://www.redincreative.io/" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
-                  RC小紅書/抖音帳號二手買賣網
-                </a>
-              </li>
-              <li>
-                <a href="https://www.nsc-o2o.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
-                  NSC 网红网
-                </a>
-              </li>
-              <li>
-                <a href="https://www.redipgroup.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
-                  紅品文化
-                </a>
-              </li>
-              <li>
-                <a href="https://www.nufund-hk.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
-                  NUFund Consultancy
-                </a>
-              </li>
+              <li><a href="https://www.redincreative.io/" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">RC小紅書/抖音帳號二手買賣網</a></li>
+              <li><a href="https://www.nsc-o2o.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">NSC 网红网</a></li>
+              <li><a href="https://www.redipgroup.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">紅品文化</a></li>
+              <li><a href="https://www.nufund-hk.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">NUFund Consultancy</a></li>
             </ul>
           </div>
         </div>
@@ -96,13 +79,11 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} Redin Creative Limited. All rights reserved.
-          </p>
+          <p className="text-xs text-muted-foreground">&copy; {new Date().getFullYear()} Redin Creative Limited. All rights reserved.</p>
           <div className="flex items-center gap-4 text-xs text-muted-foreground">
-            <span>微信公眾號：nscredin</span>
+            <span>{t("微信公眾號：nscredin", "WeChat: nscredin")}</span>
             <span className="hidden sm:inline">|</span>
-            <span>香港 · 深圳 · 廣州</span>
+            <span>{t("香港 · 深圳 · 廣州", "Hong Kong · Shenzhen · Guangzhou")}</span>
           </div>
         </div>
       </div>

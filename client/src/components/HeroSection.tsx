@@ -1,16 +1,18 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Sparkles, TrendingUp, Users } from "lucide-react";
-
-const stats = [
-  { value: "600+", label: "KOL/KOC 資源", icon: Users },
-  { value: "800+", label: "品牌合作經驗", icon: TrendingUp },
-  { value: "8年", label: "小紅書操盤", icon: Sparkles },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function HeroSection() {
+  const { t } = useLanguage();
+
+  const stats = [
+    { value: "600+", label: t("KOL/KOC 資源", "KOL/KOC Resources"), icon: Users },
+    { value: "800+", label: t("品牌合作經驗", "Brand Partnerships"), icon: TrendingUp },
+    { value: t("8年", "8 Yrs"), label: t("小紅書操盤", "Xiaohongshu Expertise"), icon: Sparkles },
+  ];
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
           src="https://d2xsxph8kpxj0f.cloudfront.net/310519663690217418/oMXvANcMiWzE8eKVtdkVSS/hero-bg-ZdWeTCm99tG3ChmB2X2jSW.webp"
@@ -20,7 +22,6 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
       </div>
 
-      {/* Content */}
       <div className="container relative z-10 pt-32 pb-20">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
@@ -39,9 +40,13 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
             className="text-4xl sm:text-5xl lg:text-7xl font-bold font-['Playfair_Display'] leading-tight mb-6"
           >
-            <span className="text-gradient-gold">創意驅動</span>
+            <span className="text-gradient-gold">
+              {t("創意驅動", "Creativity-Driven")}
+            </span>
             <br />
-            <span className="text-foreground">全網聯動・實效落地</span>
+            <span className="text-foreground">
+              {t("全網聯動・實效落地", "Omni-Channel · Result-Oriented")}
+            </span>
           </motion.h1>
 
           <motion.p
@@ -50,9 +55,10 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
             className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
           >
-            Redin Creative 紅人創 — 香港領先全方位市場營銷服務商，
-            致力於成為企業最值得信賴的戰略行銷夥伴。
-            專精中港跨境公關、KOL 網紅營銷與品牌策略。
+            {t(
+              "Redin Creative 紅人創 — 香港領先全方位市場營銷服務商，致力於成為企業最值得信賴的戰略行銷夥伴。專精中港跨境公關、KOL 網紅營銷與品牌策略。",
+              "Redin Creative — Hong Kong's leading full-service marketing agency, committed to being your most trusted strategic marketing partner. Specializing in cross-border PR, KOL influencer marketing, and brand strategy."
+            )}
           </motion.p>
 
           <motion.div
@@ -66,18 +72,17 @@ export default function HeroSection() {
               className="px-8 py-4 text-base font-semibold rounded-xl bg-gold text-slate-950 hover:bg-gold-light transition-all duration-200 hover:scale-105 active:scale-95 shadow-xl shadow-gold/25 flex items-center gap-2"
             >
               <Sparkles size={18} />
-              AI 行銷企劃產生器
+              {t("AI 行銷企劃產生器", "AI Campaign Generator")}
             </a>
             <a
               href="#services"
               className="px-8 py-4 text-base font-semibold rounded-xl border border-gold/30 text-gold hover:bg-gold/10 transition-all duration-200 hover:scale-105 active:scale-95"
             >
-              探索服務
+              {t("探索服務", "Explore Services")}
             </a>
           </motion.div>
         </div>
 
-        {/* Stats */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -98,7 +103,6 @@ export default function HeroSection() {
           ))}
         </motion.div>
 
-        {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

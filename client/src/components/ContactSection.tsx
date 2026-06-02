@@ -104,8 +104,8 @@ export default function ContactSection() {
                   <Globe className="text-gold" size={18} />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">官方網站</p>
-                  <p className="text-sm font-medium text-foreground">www.redincreative.com</p>
+                  <p className="text-xs text-muted-foreground">EMAIL</p>
+                  <p className="text-sm font-medium text-foreground">contact@redincreative.com</p>
                 </div>
               </div>
 
@@ -114,8 +114,8 @@ export default function ContactSection() {
                   <MessageCircle className="text-gold" size={18} />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">微信公眾號</p>
-                  <p className="text-sm font-medium text-foreground">nscredin</p>
+                  <p className="text-xs text-muted-foreground">WhatsApp</p>
+                  <p className="text-sm font-medium text-foreground">+852 6705 7987</p>
                 </div>
               </div>
 
@@ -124,17 +124,17 @@ export default function ContactSection() {
                   <Globe className="text-gold" size={18} />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">NSC 网红网</p>
-                  <p className="text-sm font-medium text-foreground">www.nsc-o2o.com</p>
+                  <p className="text-xs text-muted-foreground">Redin Creative Inbox</p>
+                  <p className="text-sm font-medium text-foreground">www.redincreative.io</p>
                 </div>
               </div>
             </div>
 
             {/* Partner brands */}
             <div className="glass-card p-6">
-              <h3 className="text-sm font-bold text-foreground mb-3">旗下品牌</h3>
+              <h3 className="text-sm font-bold text-foreground mb-3">香港戰略合作夥伴</h3>
               <div className="space-y-2 text-xs text-muted-foreground">
-                <p>Redin Creative 紅人創 — www.redincreative.com</p>
+                <p></p>
                 <p>NSC 网红网 — www.nsc-o2o.com</p>
                 <p>紅品文化 — www.redipgroup.com</p>
                 <p>NUFund Consultancy — www.nufund-hk.com</p>

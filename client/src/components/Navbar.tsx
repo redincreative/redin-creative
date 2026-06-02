@@ -35,10 +35,10 @@ export default function Navbar() {
         {/* Logo */}
         <a href="#" className="flex items-center gap-2 group">
           <span className="text-2xl font-bold font-['Playfair_Display'] text-gradient-gold">
-            REDIN
+            REDIN CREATIVE
           </span>
-          <span className="text-sm text-muted-foreground font-medium hidden sm:block">
-            紅人創
+          <span className="text-sm text-muted-foreground font-medium hidden sm:block" style={{fontSize: '16px'}}>
+            紅人創文化傳媒有限公司
           </span>
         </a>
 

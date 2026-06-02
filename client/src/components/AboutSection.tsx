@@ -99,7 +99,7 @@ export default function AboutSection() {
               </span>
               <span className="px-3 py-1.5 text-xs font-medium rounded-full bg-gold/10 text-gold border border-gold/20">
                 <MapPin size={12} className="inline mr-1" />
-                東莞
+                廣州
               </span>
             </div>
           </motion.div>

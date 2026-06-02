@@ -207,6 +207,24 @@ export default function ROICalculator() {
             </div>
           </div>
         </motion.div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="text-center mt-12"
+        >
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold rounded-xl bg-gold text-slate-950 hover:bg-gold-light transition-all duration-200 hover:scale-105 active:scale-95 shadow-xl shadow-gold/25"
+          >
+            立即預約免費諮詢
+          </a>
+          <p className="text-sm text-muted-foreground mt-3">
+            讓我們的策略團隊為您量身定制高 ROI 行銷方案
+          </p>
+        </motion.div>
       </div>
     </section>
   );

@@ -33,13 +33,20 @@ export default function Navbar() {
     >
       <div className="container flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2 group">
-          <span className="text-2xl font-bold font-['Playfair_Display'] text-gradient-gold">
-            REDIN CREATIVE
-          </span>
-          <span className="text-sm text-muted-foreground font-medium hidden sm:block" style={{fontSize: '16px'}}>
-            紅人創文化傳媒有限公司
-          </span>
+        <a href="#" className="flex items-center gap-3 group">
+          <img
+            src="/manus-storage/redin-logo_cba1da9b.jpg"
+            alt="Redin Creative Logo"
+            className="h-10 w-10 rounded-lg object-contain"
+          />
+          <div className="flex flex-col">
+            <span className="text-lg font-bold font-['Playfair_Display'] text-gradient-gold leading-tight">
+              REDIN CREATIVE
+            </span>
+            <span className="text-xs text-muted-foreground font-medium hidden sm:block leading-tight">
+              紅人創文化傳媒有限公司
+            </span>
+          </div>
         </a>
 
         {/* Desktop Nav */}

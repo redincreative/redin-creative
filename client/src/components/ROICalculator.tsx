@@ -74,13 +74,13 @@ export default function ROICalculator() {
                   value={budget}
                   onValueChange={setBudget}
                   min={10000}
-                  max={500000}
-                  step={5000}
+                  max={5000000}
+                  step={10000}
                   className="[&_[role=slider]]:bg-gold [&_[role=slider]]:border-gold [&_.bg-primary]:bg-gold"
                 />
                 <div className="flex justify-between mt-1 text-xs text-muted-foreground">
                   <span>HK$10,000</span>
-                  <span>HK$500,000</span>
+                  <span>HK$5,000,000</span>
                 </div>
               </div>
 
@@ -96,13 +96,13 @@ export default function ROICalculator() {
                   value={impressions}
                   onValueChange={setImpressions}
                   min={50000}
-                  max={5000000}
+                  max={10000000}
                   step={50000}
                   className="[&_[role=slider]]:bg-gold [&_[role=slider]]:border-gold [&_.bg-primary]:bg-gold"
                 />
                 <div className="flex justify-between mt-1 text-xs text-muted-foreground">
                   <span>50,000</span>
-                  <span>5,000,000</span>
+                  <span>10,000,000</span>
                 </div>
               </div>
 
@@ -140,13 +140,13 @@ export default function ROICalculator() {
                   value={avgOrderValue}
                   onValueChange={setAvgOrderValue}
                   min={50}
-                  max={5000}
-                  step={50}
+                  max={200000}
+                  step={500}
                   className="[&_[role=slider]]:bg-gold [&_[role=slider]]:border-gold [&_.bg-primary]:bg-gold"
                 />
                 <div className="flex justify-between mt-1 text-xs text-muted-foreground">
                   <span>HK$50</span>
-                  <span>HK$5,000</span>
+                  <span>HK$200,000</span>
                 </div>
               </div>
             </div>

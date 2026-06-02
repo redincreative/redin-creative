@@ -140,13 +140,13 @@ export default function ROICalculator() {
                   value={avgOrderValue}
                   onValueChange={setAvgOrderValue}
                   min={50}
-                  max={200000}
-                  step={500}
+                  max={50000}
+                  step={250}
                   className="[&_[role=slider]]:bg-gold [&_[role=slider]]:border-gold [&_.bg-primary]:bg-gold"
                 />
                 <div className="flex justify-between mt-1 text-xs text-muted-foreground">
                   <span>HK$50</span>
-                  <span>HK$200,000</span>
+                  <span>HK$50,000</span>
                 </div>
               </div>
             </div>

@@ -2,7 +2,6 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import PartnersSection from "@/components/PartnersSection";
 import ServicesSection from "@/components/ServicesSection";
-import DashboardSection from "@/components/DashboardSection";
 import CasesSection from "@/components/CasesSection";
 import AIGenerator from "@/components/AIGenerator";
 import ROICalculator from "@/components/ROICalculator";
@@ -18,7 +17,6 @@ export default function Home() {
       <HeroSection />
       <PartnersSection />
       <ServicesSection />
-      <DashboardSection />
       <CasesSection />
       <AIGenerator />
       <ROICalculator />

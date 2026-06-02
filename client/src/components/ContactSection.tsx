@@ -124,7 +124,7 @@ export default function ContactSection() {
                   <Globe className="text-gold" size={18} />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">Redin Creative Inbox</p>
+                  <p className="text-xs text-muted-foreground">Redin Creative 小紅書/抖音帳號買賣網</p>
                   <p className="text-sm font-medium text-foreground">www.redincreative.io</p>
                 </div>
               </div>

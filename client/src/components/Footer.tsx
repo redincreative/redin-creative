@@ -44,11 +44,11 @@ export default function Footer() {
 
           {/* Group */}
           <div>
-            <h4 className="text-sm font-bold text-foreground mb-3">集團成員</h4>
+            <h4 className="text-sm font-bold text-foreground mb-3">香港戰略合作夥伴</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <a href="https://www.redincreative.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
-                  Redin Creative 紅人創
+                <a href="https://www.redincreative.io/" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
+                  RC小紅書/抖音帳號二手買賣網
                 </a>
               </li>
               <li>
@@ -78,7 +78,7 @@ export default function Footer() {
           <div className="flex items-center gap-4 text-xs text-muted-foreground">
             <span>微信公眾號：nscredin</span>
             <span className="hidden sm:inline">|</span>
-            <span>香港 · 深圳 · 東莞</span>
+            <span>香港 · 深圳 · 廣州</span>
           </div>
         </div>
       </div>

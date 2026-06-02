@@ -4,6 +4,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { invokeLLM } from "./_core/llm";
+import { notifyOwner } from "./_core/notification";
 
 const campaignInputSchema = z.object({
   brandName: z.string().min(1).max(100),
@@ -40,6 +41,48 @@ export const appRouter = router({
         success: true,
       } as const;
     }),
+  }),
+
+  contact: router({
+    submit: publicProcedure
+      .input(
+        z.object({
+          name: z.string().min(1).max(100),
+          company: z.string().max(100).optional().default(""),
+          email: z.string().email().max(320),
+          phone: z.string().max(50).optional().default(""),
+          services: z.array(z.string()).default([]),
+          description: z.string().max(2000).optional().default(""),
+          budget: z.string().max(100).optional().default(""),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const { name, company, email, phone, services, description, budget } = input;
+
+        const content = [
+          `姓名：${name}`,
+          company ? `公司：${company}` : null,
+          `電郵：${email}`,
+          phone ? `電話：${phone}` : null,
+          services.length ? `需求服務：${services.join("、")}` : null,
+          budget ? `預算範圍：${budget}` : null,
+          description ? `補充說明：${description}` : null,
+        ]
+          .filter(Boolean)
+          .join("\n");
+
+        try {
+          const delivered = await notifyOwner({
+            title: `【Redin Creative】新諮詢：${name}${company ? ` (${company})` : ""}`,
+            content,
+          });
+          return { success: true as const, notified: delivered };
+        } catch (error) {
+          console.error("[contact.submit] notify error:", error);
+          // Still treat as success so the user sees confirmation; owner notification is best-effort
+          return { success: true as const, notified: false };
+        }
+      }),
   }),
 
   campaign: router({

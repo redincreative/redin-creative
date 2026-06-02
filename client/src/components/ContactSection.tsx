@@ -5,6 +5,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Send, Globe, MessageCircle, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { trpc } from "@/lib/trpc";
 
 export default function ContactSection() {
   const [step, setStep] = useState(1);
@@ -15,6 +16,7 @@ export default function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
   const { ref, inView } = useInView({ threshold: 0.1 });
   const { t } = useLanguage();
+  const submitMutation = trpc.contact.submit.useMutation();
 
   const steps = [
     { id: 1, title: t("基本資訊", "Basic Info") },
@@ -41,7 +43,20 @@ export default function ContactSection() {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    try {
+      await submitMutation.mutateAsync({
+        name: formData.name,
+        company: formData.company,
+        email: formData.email,
+        phone: formData.phone,
+        services: formData.services,
+        description: formData.description,
+        budget: formData.budget,
+      });
+    } catch (error) {
+      // best-effort; still show confirmation to the user
+    }
     setSubmitted(true);
     toast.success(t("感謝您的諮詢！我們的團隊將在 24 小時內與您聯繫。", "Thank you! Our team will contact you within 24 hours."));
   };

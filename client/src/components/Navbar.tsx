@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "@/contexts/ThemeContext";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { Moon, Sun, Menu, X, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
@@ -14,6 +15,7 @@ const navItems = [
 
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
+  const { lang, setLang } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -57,13 +59,23 @@ export default function Navbar() {
               href={item.href}
               className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-gold transition-colors duration-200 rounded-lg hover:bg-accent/50"
             >
-              {item.label}
+              {lang === "zh" ? item.label : item.labelEn}
             </a>
           ))}
         </div>
 
         {/* Actions */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
+          {/* Language Toggle */}
+          <button
+            onClick={() => setLang(lang === "zh" ? "en" : "zh")}
+            className="p-2 rounded-lg bg-accent/50 hover:bg-accent text-foreground transition-all duration-200 hover:scale-105 active:scale-95 flex items-center gap-1"
+            aria-label="Toggle language"
+          >
+            <Globe size={16} />
+            <span className="text-xs font-medium">{lang === "zh" ? "EN" : "中"}</span>
+          </button>
+
           <button
             onClick={toggleTheme}
             className="p-2 rounded-lg bg-accent/50 hover:bg-accent text-foreground transition-all duration-200 hover:scale-105 active:scale-95"
@@ -76,7 +88,7 @@ export default function Navbar() {
             href="#contact"
             className="hidden sm:inline-flex px-5 py-2.5 text-sm font-semibold rounded-lg bg-gold text-slate-950 hover:bg-gold-light transition-all duration-200 hover:scale-105 active:scale-95 shadow-lg shadow-gold/20"
           >
-            免費諮詢
+            {lang === "zh" ? "免費諮詢" : "Contact Us"}
           </a>
 
           {/* Mobile menu button */}
@@ -108,8 +120,7 @@ export default function Navbar() {
                   onClick={() => setMobileOpen(false)}
                   className="px-4 py-3 text-sm font-medium text-foreground/80 hover:text-gold rounded-lg hover:bg-accent/50 transition-colors"
                 >
-                  {item.label}
-                  <span className="ml-2 text-xs text-muted-foreground">{item.labelEn}</span>
+                  {lang === "zh" ? item.label : item.labelEn}
                 </a>
               ))}
               <a
@@ -117,7 +128,7 @@ export default function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className="mt-2 px-5 py-3 text-sm font-semibold rounded-lg bg-gold text-slate-950 text-center hover:bg-gold-light transition-all"
               >
-                免費諮詢
+                {lang === "zh" ? "免費諮詢" : "Contact Us"}
               </a>
             </div>
           </motion.div>

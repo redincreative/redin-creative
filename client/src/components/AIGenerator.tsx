@@ -11,6 +11,10 @@ const industries = [
   { id: "startup", label: "新創", labelEn: "Startup" },
   { id: "beauty", label: "美妝護膚", labelEn: "Beauty" },
   { id: "health", label: "健康保健", labelEn: "Health" },
+  { id: "realestate", label: "地產", labelEn: "Real Estate" },
+  { id: "education", label: "教育", labelEn: "Education" },
+  { id: "travel", label: "旅遊", labelEn: "Travel" },
+  { id: "ecommerce", label: "電商", labelEn: "E-commerce" },
 ];
 
 const objectives = [
@@ -249,7 +253,7 @@ ${result.expectedResults}
                 <label className="text-sm font-medium text-foreground mb-2 block">
                   產業別 <span className="text-gold">*</span>
                 </label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
                   {industries.map((ind) => (
                     <button
                       key={ind.id}

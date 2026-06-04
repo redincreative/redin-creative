@@ -200,8 +200,8 @@ export default function CasesSection() {
               className="glass-card max-w-2xl w-full max-h-[85vh] overflow-y-auto p-0"
             >
               <div className="relative h-56">
-                <img src={selectedCase.image} alt={selectedCase.title} className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
+                <img src={selectedCase.image} alt={selectedCase.title} className="w-full h-full object-cover" style={{display: 'none'}} />
+                <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" style={{display: 'none'}} />
                 <button onClick={() => setSelectedCase(null)} className="absolute top-4 right-4 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors">
                   <X size={18} />
                 </button>

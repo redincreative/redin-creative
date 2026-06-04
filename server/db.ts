@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
+import { InsertUser, users, inquiries, InsertInquiry, Inquiry } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -87,6 +87,25 @@ export async function getUserByOpenId(openId: string) {
   const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
 
   return result.length > 0 ? result[0] : undefined;
+}
+
+export async function insertInquiry(inquiry: InsertInquiry): Promise<Inquiry | null> {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot insert inquiry: database not available");
+    return null;
+  }
+
+  try {
+    const result = await db.insert(inquiries).values(inquiry);
+    const id = (result as any)[0]?.insertId;
+    if (!id) return null;
+    const rows = await db.select().from(inquiries).where(eq(inquiries.id, id as number)).limit(1);
+    return rows.length > 0 ? rows[0] : null;
+  } catch (error) {
+    console.error("[Database] Failed to insert inquiry:", error);
+    return null;
+  }
 }
 
 // TODO: add feature queries here as your schema grows.

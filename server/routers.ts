@@ -5,6 +5,7 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { invokeLLM } from "./_core/llm";
 import { notifyOwner } from "./_core/notification";
+import { insertInquiry } from "./db";
 
 const campaignInputSchema = z.object({
   brandName: z.string().min(1).max(100),
@@ -71,16 +72,26 @@ export const appRouter = router({
           .filter(Boolean)
           .join("\n");
 
+        const saved = await insertInquiry({
+          name,
+          company: company || null,
+          email,
+          phone: phone || null,
+          services: services.length > 0 ? JSON.stringify(services) : null,
+          description: description || null,
+          budget: budget || null,
+          status: "new",
+        });
+
         try {
           const delivered = await notifyOwner({
             title: `【Redin Creative】新諮詢：${name}${company ? ` (${company})` : ""}`,
             content,
           });
-          return { success: true as const, notified: delivered };
+          return { success: true as const, notified: delivered, inquiryId: saved?.id };
         } catch (error) {
           console.error("[contact.submit] notify error:", error);
-          // Still treat as success so the user sees confirmation; owner notification is best-effort
-          return { success: true as const, notified: false };
+          return { success: true as const, notified: false, inquiryId: saved?.id };
         }
       }),
   }),
@@ -91,51 +102,38 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         const { brandName, industry, objective, lang } = input;
 
-        const systemPrompt =
-          lang === "zh"
-            ? `你是 Redin Creative 紅人創（香港頂級公關與行銷代理商）的資深策略總監，精通中港跨境營銷、KOL 網紅營銷、小紅書/抖音運營與品牌策略。請為客戶生成一份專業、創意且具備實戰價值的公關行銷企劃案。所有內容使用繁體中文，風格專業、具體、有數據支撐。`
-            : `You are a Senior Strategy Director at Redin Creative, a top-tier Hong Kong PR and marketing agency specializing in cross-border marketing, KOL influencer marketing, Xiaohongshu/Douyin operations, and brand strategy. Generate a professional, creative, and actionable PR & marketing campaign plan. Respond entirely in English with a professional, specific, data-backed tone.`;
-
-        const userPrompt =
-          lang === "zh"
-            ? `請為以下品牌生成專屬的公關行銷企劃案：\n品牌名稱：${brandName}\n產業別：${industry}\n核心行銷目標：${objective}\n\n請提供：行銷主題、目標受眾分析、公關主軸、三階段執行策略（每階段含時程與具體做法）、預期效益（含量化指標）。`
-            : `Generate a tailored PR & marketing campaign plan for:\nBrand: ${brandName}\nIndustry: ${industry}\nObjective: ${objective}\n\nProvide: campaign theme, target audience analysis, PR core strategy, three-phase execution strategy (with timeline and specific actions per phase), and expected results (with quantified metrics).`;
+        const prompt =
+          lang === "en"
+            ? `You are a creative PR and marketing strategist. Generate a professional marketing campaign plan for "${brandName}" in the "${industry}" industry with the objective of "${objective}". Return ONLY valid JSON matching the schema provided.`
+            : `你是一位創意公關與行銷策略家。為品牌「${brandName}」（${industry}行業）生成一份專業的行銷企劃案，核心目標為「${objective}」。僅返回符合指定 schema 的有效 JSON。`;
 
         try {
           const response = await invokeLLM({
-            model: "gemini-2.5-flash",
             messages: [
-              { role: "system", content: systemPrompt },
-              { role: "user", content: userPrompt },
+              {
+                role: "system",
+                content: `You are a creative PR and marketing strategist. Generate a professional marketing campaign plan. Return ONLY valid JSON matching this schema: ${JSON.stringify(campaignSchema)}`,
+              },
+              { role: "user", content: prompt },
             ],
             response_format: {
               type: "json_schema",
               json_schema: {
                 name: "campaign_plan",
                 strict: true,
-                schema: campaignSchema,
+                schema: campaignSchema as any,
               },
             },
           });
 
-          const content = response.choices?.[0]?.message?.content;
+          const rawContent = response.choices?.[0]?.message?.content;
+          const content = typeof rawContent === "string" ? rawContent : "";
           if (!content) {
             return { success: false as const, plan: null };
           }
 
-          const parsed = typeof content === "string" ? JSON.parse(content) : content;
-          const phases = Array.isArray(parsed.phases) ? parsed.phases : [];
-
-          return {
-            success: true as const,
-            plan: {
-              theme: parsed.theme ?? "",
-              audience: parsed.audience ?? "",
-              prAxis: parsed.prAxis ?? "",
-              phases,
-              expectedResults: parsed.expectedResults ?? "",
-            },
-          };
+          const plan = JSON.parse(content);
+          return { success: true as const, plan };
         } catch (error) {
           console.error("[campaign.generate] LLM error:", error);
           return { success: false as const, plan: null };

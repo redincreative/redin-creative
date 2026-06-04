@@ -1,19 +1,11 @@
 import { motion } from "framer-motion";
 import { useInView } from "@/hooks/useInView";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Award, Globe, Users, Briefcase, Star, MapPin } from "lucide-react";
+import { Globe, Users, Briefcase, Star, MapPin } from "lucide-react";
 
 export default function AboutSection() {
   const { ref, inView } = useInView({ threshold: 0.1 });
   const { t } = useLanguage();
-
-  const awards = [
-    { year: "2019", title: t("大灣區優質誠信企業白金獎", "GBA Quality Enterprise Platinum Award") },
-    { year: "2020", title: t("中國科技創新百業十佳新銳品牌", "China Top 10 Innovative Brand") },
-    { year: "2022", title: t("香港最佳新媒體營銷策劃金獎", "HK Best New Media Marketing Gold Award") },
-    { year: "2023", title: t("香港優質網商認證標誌", "HK Quality E-Commerce Certification") },
-    { year: "2023", title: t("大灣區百強企業品牌白金獎", "GBA Top 100 Enterprise Platinum Award") },
-  ];
 
   const highlights = [
     { icon: Users, value: "600+", label: t("香港及港漂 KOL/KOC", "HK-based KOL/KOC") },
@@ -86,21 +78,6 @@ export default function AboutSection() {
           ))}
         </motion.div>
 
-        {/* Awards */}
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.5 }}>
-          <h3 className="text-xl font-bold text-foreground text-center mb-8 flex items-center justify-center gap-2">
-            <Award className="text-gold" size={22} />
-            {t("過往榮譽", "Awards & Recognition")}
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-            {awards.map((award, i) => (
-              <div key={i} className="glass-card p-4 text-center hover:border-gold/30 transition-all duration-300 group">
-                <p className="text-lg font-bold font-['DM_Mono'] text-gold mb-1">{award.year}</p>
-                <p className="text-xs text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors">{award.title}</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );

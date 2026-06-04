@@ -6,7 +6,12 @@ vi.mock("./_core/notification", () => ({
   notifyOwner: vi.fn(),
 }));
 
+vi.mock("./db", () => ({
+  insertInquiry: vi.fn().mockResolvedValue({ id: 1 }),
+}));
+
 import { notifyOwner } from "./_core/notification";
+import { insertInquiry } from "./db";
 
 function createPublicContext(): TrpcContext {
   return {
@@ -23,6 +28,7 @@ describe("contact.submit", () => {
 
   it("notifies the owner and returns success on valid submission", async () => {
     vi.mocked(notifyOwner).mockResolvedValue(true);
+    vi.mocked(insertInquiry).mockResolvedValue({ id: 1 } as any);
 
     const caller = appRouter.createCaller(createPublicContext());
     const result = await caller.contact.submit({
@@ -37,6 +43,7 @@ describe("contact.submit", () => {
 
     expect(result.success).toBe(true);
     expect(result.notified).toBe(true);
+    expect(insertInquiry).toHaveBeenCalledOnce();
     expect(notifyOwner).toHaveBeenCalledOnce();
     const callArg = vi.mocked(notifyOwner).mock.calls[0][0];
     expect(callArg.title).toContain("陳大文");

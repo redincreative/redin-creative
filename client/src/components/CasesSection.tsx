@@ -40,7 +40,12 @@ const cases = [
   {
     id: 3, category: "crisis",
     title: "VELYVELY 唯黎事件營銷", titleEn: "VELYVELY Event Marketing",
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663690217418/oMXvANcMiWzE8eKVtdkVSS/rc-case-velyvely-Ykv5Wdnt5htWBYYuG3CPG2.webp",
+    image: "/manus-storage/velyvely-launch-speech_0062d66c.png",
+    gallery: [
+      { src: "/manus-storage/velyvely-launch-speech_0062d66c.png", alt: "VELYVELY 唯黎新品體驗會發佈會現場主持演講 — Redin Creative 紅人創公關活動策劃", altEn: "VELYVELY IM VELY product launch event keynote speech — Redin Creative PR campaign" },
+      { src: "/manus-storage/velyvely-event-audience_8a6928d2.png", alt: "VELYVELY 唯黎新品發佈會現場眾多 KOL 網紅與觀眾出席 — 香港公關公司案例", altEn: "VELYVELY launch event with KOL influencers and audience — Hong Kong PR agency case study" },
+      { src: "/manus-storage/velyvely-products_c697716d.png", alt: "VELYVELY 唯黎韓國美妝護膚產品系列展示 — 小紅書抖音種草營銷", altEn: "VELYVELY Korean beauty skincare product lineup display — Xiaohongshu Douyin seeding marketing" },
+    ],
     kpis: { reach: "60家媒體", engagement: "全網問答", conversion: "聲譽重塑" },
     challenge: "韓國美妝品牌 VELYVELY 唯黎面對各大社交平台出現的負面評論，需要重建品牌聲譽並強化進入中國市場的品牌權威。",
     challengeEn: "Korean beauty brand VELYVELY faced negative comments across social platforms, needing to rebuild reputation and strengthen brand authority entering the Chinese market.",
@@ -241,6 +246,23 @@ export default function CasesSection() {
                     <h4 className="text-sm font-bold text-gold mb-2 flex items-center gap-2"><TrendingUp size={14} /> {t("成果", "Results")}</h4>
                     <p className="text-sm text-muted-foreground leading-relaxed">{lang === "zh" ? selectedCase.result : selectedCase.resultEn}</p>
                   </div>
+                  {selectedCase.gallery && (
+                    <div>
+                      <h4 className="text-sm font-bold text-gold mb-3 flex items-center gap-2"><Eye size={14} /> {t("活動實景", "Event Gallery")}</h4>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        {selectedCase.gallery.map((img, gi) => (
+                          <div key={gi} className="relative rounded-lg overflow-hidden aspect-[4/3] group">
+                            <img
+                              src={img.src}
+                              alt={lang === "zh" ? img.alt : img.altEn}
+                              loading="lazy"
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>

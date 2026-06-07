@@ -7,6 +7,7 @@ import CasesSection from "@/components/CasesSection";
 import AIGenerator from "@/components/AIGenerator";
 import ROICalculator from "@/components/ROICalculator";
 import InsightsSection from "@/components/InsightsSection";
+import FAQSection from "@/components/FAQSection";
 import AboutSection from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
@@ -26,6 +27,7 @@ export default function Home() {
       <ROICalculator />
       <InsightsSection />
       <AboutSection />
+      <FAQSection />
       <ContactSection />
       <Footer />
       <WhatsAppButton />

@@ -10,6 +10,7 @@ const navItems = [
   { label: "AI 企劃", labelEn: "AI Planner", href: "#ai-generator" },
   { label: "ROI 計算", labelEn: "ROI", href: "#roi-calculator" },
   { label: "關於我們", labelEn: "About", href: "#about" },
+  { label: "常見問題", labelEn: "FAQ", href: "#faq" },
   { label: "聯繫", labelEn: "Contact", href: "#contact" },
 ];
 

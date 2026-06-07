@@ -289,3 +289,52 @@ html {
 .light .hover\:bg-gold\/10:hover {
   background-color: oklch(0.40 0.16 280 / 0.1);
 }
+
+/* Insight article prose styling */
+.insight-prose h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--foreground);
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  font-family: 'Playfair Display', 'Noto Serif TC', serif;
+}
+.insight-prose h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: oklch(0.78 0.12 85);
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.light .insight-prose h3 {
+  color: oklch(0.40 0.16 280);
+}
+.insight-prose p {
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
+.insight-prose ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+.insight-prose li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+.insight-prose strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+.insight-prose blockquote {
+  border-left: 3px solid oklch(0.78 0.12 85);
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  background: oklch(0.78 0.12 85 / 0.06);
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+}
+.light .insight-prose blockquote {
+  border-left-color: oklch(0.40 0.16 280);
+  background: oklch(0.40 0.16 280 / 0.06);
+}

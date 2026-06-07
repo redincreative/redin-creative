@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.redincreative.com/sitemap.xml
+Sitemap: https://redincreative.com/sitemap.xml

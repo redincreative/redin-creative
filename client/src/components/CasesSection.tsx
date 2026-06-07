@@ -70,6 +70,11 @@ const cases = [
     id: 5, category: "ip",
     title: "個人 IP 多平台運營", titleEn: "Personal IP Multi-Platform Operation",
     image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663690217418/oMXvANcMiWzE8eKVtdkVSS/rc-case-personal-ip-KdxMEcs7rskcSjgU4e3dp9.webp",
+    gallery: [
+      { src: "/manus-storage/mrlaw-xhs-profile_e151037c.png", alt: "香港羅先生小紅書個人 IP 主頁 1.9萬粉絲 — Redin Creative 紅人創網紅 IP 孵化", altEn: "Hong Kong Mr. Law Xiaohongshu personal IP profile with 19K followers — Redin Creative KOL IP incubation" },
+      { src: "/manus-storage/mrlaw-douyin-grid_3e7308b9.png", alt: "香港羅先生抖音企業家短視頻作品矩陣 — 個人 IP 多平台內容運營", altEn: "Hong Kong Mr. Law Douyin entrepreneur short-video content matrix — personal IP multi-platform operation" },
+      { src: "/manus-storage/mrlaw-reels-grid_cd0233c3.png", alt: "香港羅先生 Instagram Reels 探店短視頻高觀看量 — 跨平台網紅影響力營銷", altEn: "Hong Kong Mr. Law Instagram Reels store-visit videos with high views — cross-platform influencer marketing" },
+    ],
     kpis: { reach: "84萬+", engagement: "4 平台", conversion: "IP 孵化" },
     challenge: "協助香港羅先生從零打造個人 IP，需要在小紅書、抖音、視頻號、Reels 等多個平台同步建立影響力與粉絲基礎。",
     challengeEn: "Help Hong Kong's Mr. Law build a personal IP from scratch, establishing influence and follower base across Xiaohongshu, Douyin, Channels, and Reels simultaneously.",

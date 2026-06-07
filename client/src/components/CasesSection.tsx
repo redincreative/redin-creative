@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "@/hooks/useInView";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { X, TrendingUp, Eye, Users, Award, Zap } from "lucide-react";
+import { X, TrendingUp, Eye, Users, Award, Zap, ZoomIn } from "lucide-react";
 
 const categories = [
   { id: "all", label: "全部", labelEn: "All" },
@@ -100,6 +100,7 @@ const cases = [
 export default function CasesSection() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [selectedCase, setSelectedCase] = useState<(typeof cases)[0] | null>(null);
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
   const { ref, inView } = useInView({ threshold: 0.05 });
   const { lang, t } = useLanguage();
 
@@ -256,14 +257,23 @@ export default function CasesSection() {
                       <h4 className="text-sm font-bold text-gold mb-3 flex items-center gap-2"><Eye size={14} /> {t("活動實景", "Event Gallery")}</h4>
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         {selectedCase.gallery.map((img, gi) => (
-                          <div key={gi} className="relative rounded-lg overflow-hidden aspect-[4/3] group">
+                          <button
+                            key={gi}
+                            type="button"
+                            onClick={() => setLightbox({ src: img.src, alt: lang === "zh" ? img.alt : img.altEn })}
+                            className="relative rounded-lg overflow-hidden aspect-[4/3] group cursor-zoom-in"
+                            aria-label={lang === "zh" ? "放大查看" : "Zoom in"}
+                          >
                             <img
                               src={img.src}
                               alt={lang === "zh" ? img.alt : img.altEn}
                               loading="lazy"
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             />
-                          </div>
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                              <ZoomIn size={22} className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            </div>
+                          </button>
                         ))}
                       </div>
                     </div>
@@ -271,6 +281,41 @@ export default function CasesSection() {
                 </div>
               </div>
             </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-8 bg-black/90 backdrop-blur-sm cursor-zoom-out"
+            onClick={() => setLightbox(null)}
+          >
+            <button
+              onClick={() => setLightbox(null)}
+              className="absolute top-5 right-5 p-2.5 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+              aria-label="Close"
+            >
+              <X size={22} />
+            </button>
+            <motion.figure
+              initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
+              className="max-w-5xl w-full flex flex-col items-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={lightbox.src}
+                alt={lightbox.alt}
+                className="max-h-[80vh] w-auto max-w-full object-contain rounded-lg shadow-2xl"
+              />
+              <figcaption className="mt-4 text-sm text-white/80 text-center max-w-2xl leading-relaxed">
+                {lightbox.alt}
+              </figcaption>
+            </motion.figure>
           </motion.div>
         )}
       </AnimatePresence>

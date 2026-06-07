@@ -37,7 +37,7 @@ export default function AboutSection() {
             <div className="glass-card overflow-hidden">
               <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663690217418/oMXvANcMiWzE8eKVtdkVSS/about-team-SJEcgWJjkNTsiYNtNkwfpR.webp" alt="Redin Creative Team" className="w-full h-80 object-cover" />
             </div>
-            <div className="absolute -bottom-4 -right-4 glass-card px-4 py-3 border-gold/30">
+            <div className="absolute -bottom-4 -right-4 glass-card px-4 py-3 border-gold/30" style={{display: 'none'}}>
               <p className="text-xs text-muted-foreground">{t("成立於", "Established")}</p>
               <p className="text-lg font-bold font-['DM_Mono'] text-gold">8+ {t("年", "Years")}</p>
             </div>

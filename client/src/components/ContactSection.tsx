@@ -98,7 +98,7 @@ export default function ContactSection() {
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center"><Globe className="text-gold" size={18} /></div>
-                <div><p className="text-xs text-muted-foreground">Redin Creative 小紅書/抖音帳號買賣網</p><p className="text-sm font-medium text-foreground">www.redincreative.io</p></div>
+                <div><p className="text-xs text-muted-foreground">Redin Creative 小紅書/抖音帳號買賣網</p><p className="text-sm font-medium text-foreground">www.redincreative.shop</p></div>
               </div>
             </div>
             <div className="glass-card p-6">

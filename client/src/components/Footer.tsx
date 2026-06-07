@@ -45,7 +45,7 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-bold text-foreground mb-3">{t("香港戰略合作夥伴", "HK Strategic Partners")}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="https://www.redincreative.io/" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">RC小紅書/抖音帳號二手買賣網</a></li>
+              <li><a href="https://www.redincreative.shop/" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">RC小紅書/抖音帳號二手買賣網</a></li>
               <li><a href="https://www.nsc-o2o.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">NSC 网红网</a></li>
               <li><a href="https://www.redipgroup.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">紅品文化</a></li>
               <li><a href="https://www.nufund-hk.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">NUFund Consultancy</a></li>
